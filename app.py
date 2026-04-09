@@ -4,11 +4,14 @@ from PIL import Image
 from predict_pipeline import predict_image
 
 app = Flask(__name__)
-CORS(app)  # 🔥 IMPORTANT
+CORS(app)
+
+@app.route("/")
+def home():
+    return "Backend Running 🚀"
 
 @app.route("/predict", methods=["POST"])
 def predict():
-
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
 
@@ -18,20 +21,18 @@ def predict():
         image = Image.open(file).convert("RGB")
 
         result = predict_image(image)
+        print("RESULT:", result)
 
         return jsonify({
             "result": result["result"],
-            "confidence": result["confidence"],
+            "confidence": float(result["confidence"]),
             "type": result["type"],
-            "type_confidence": result["type_confidence"],
-            "recommendation": "Consult orthopedic specialist",
-            "note": "AI-generated prediction"
+            "type_confidence": float(result["type_confidence"])
         })
 
     except Exception as e:
         print("ERROR:", e)
         return jsonify({"error": str(e)}), 500
-
 
 if __name__ == "__main__":
     app.run(debug=True)

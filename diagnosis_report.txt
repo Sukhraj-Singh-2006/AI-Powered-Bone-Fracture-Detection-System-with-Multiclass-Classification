@@ -3,27 +3,27 @@
               AI RADIOLOGY DIAGNOSTIC REPORT
 ====================================================
 
-Report Generated : 2026-03-25 21:32:26
-Image File       : D:\Download\bone_fracture_AI\dataset_types\test\Avulsion\5c7fec45769db28bdd107336f19004336689a4fb804b37af3096741f2879ff02_jumbo.jpeg
+Report Generated : 2026-04-09 18:47:13
+Image File       : dataset\test\fractured\2-rotated2-rotated1-rotated2.jpg
 
 ----------------------------------------------------
 DIAGNOSIS SUMMARY
 ----------------------------------------------------
 Finding         : Fracture Detected
-Confidence      : 89.74%
+Confidence      : 99.99%
 
 ----------------------------------------------------
 FRACTURE CLASSIFICATION
 ----------------------------------------------------
-Fracture Type   : Avulsion
-Type Confidence : 92.41%
+Fracture Type   : Oblique
+Type Confidence : 36.68%
 
 ----------------------------------------------------
 CLINICAL RECOMMENDATION
 ----------------------------------------------------
 • Immediate consultation with an orthopedic specialist is advised.
-• Further imaging (CT/MRI) may be required for confirmation.
-• Avoid stress or movement in the affected area.
+• Further imaging (CT/MRI) may be required.
+• Avoid stress on affected area.
 
 ----------------------------------------------------
 DISCLAIMER

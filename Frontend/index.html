@@ -1,211 +1,223 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Bone Fracture Detection Model</title>
 
 <link rel="stylesheet" href="style.css">
-<script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
+
 
 <body>
 
+
 <!-- ========================= -->
-
-<!-- SPLASH SCREEN -->
-
+<!-- SPLASH / WELCOME SCREEN -->
 <!-- ========================= -->
 
 <div id="welcomePage">
-  <canvas id="networkCanvas"></canvas>
 
-  <div class="welcome-content">
-    <h1 class="welcome-text">WELCOME</h1>
+<canvas id="networkCanvas"></canvas>
 
+<div class="welcome-content">
+
+<h1 class="welcome-text">WELCOME</h1>
 
 <h1 class="typing-text">
-  <span id="typedText"></span>
+<span id="typedText"></span>
 </h1>
 
 <p class="subtitle">
-  Vision Transformer Based Medical Diagnosis System
+Vision Transformer Based Medical Diagnosis System
 </p>
 
 <div class="scan-line"></div>
 
-
-  </div>
 </div>
 
+</div>
+
+
 <!-- ========================= -->
-
-<!-- MAIN DASHBOARD -->
-
+<!-- MAIN APPLICATION -->
 <!-- ========================= -->
 
 <div id="mainApp">
 
-  <!-- SIDEBAR -->
+<header>
 
-  <aside class="sidebar">
+<h1>Bone Fracture Detection Model</h1>
 
-  <div class="logo">
-    🧠 <span>BoneAI</span>
-  </div>
+<p>Vision Transformer Based Medical Diagnosis System</p>
 
-<ul class="nav">
-
-
-  <li data-section="report-card">
-    <i data-lucide="file-text"></i>
-    <span>Report</span>
-  </li>
-
-</ul>
-
-
-</aside>
-
-
-  <!-- MAIN CONTENT -->
-
-  <div class="content">
-
-
-<!-- HEADER -->
-<header class="topbar">
-  <h1>Bone Fracture Detection Model</h1>
 </header>
 
-<!-- LOADER -->
-<div id="loader" class="hidden">
-  <div class="spinner"></div>
-  <p>Analyzing X-ray using AI...</p>
-</div>
 
-<!-- ASSISTANT (FLOATING) -->
-<div id="assistant">
-  <div id="assistantHeader">🤖 AI Assistant</div>
-  <div id="chatBox"></div>
-  <input type="text" id="chatInput" placeholder="Ask about fracture..." />
-</div>
+<!-- ========================= -->
+<!-- NEARBY MEDICAL SERVICES -->
+<!-- ========================= -->
 
-<!-- NEARBY -->
 <div class="report-card">
-  <h2>Nearby Medical Assistance</h2>
-  <p>If you haven't taken an X-ray yet, find nearest medical center.</p>
 
-  <div class="medical-buttons">
-    <button onclick="findXrayCenter()">X-ray Centers</button>
-    <button onclick="findHospital()">Hospitals</button>
-  </div>
+<h2>Nearby Medical Assistance</h2>
+
+<p>
+If you haven't taken an X-ray yet, find the nearest medical center.
+</p>
+
+<div class="medical-buttons">
+
+<button onclick="findXrayCenter()">Find Nearby X-ray Centers</button>
+
+<button onclick="findHospital()">Find Nearby Hospitals</button>
+
 </div>
 
-<!-- GRID -->
+</div>
+
+
 <div class="main-container">
 
-  <!-- UPLOAD -->
-  <div class="upload-card" id="upload-card">
-    <h2>Upload X-ray</h2>
 
-    <div class="drop-area">
-      <input type="file" id="imageUpload" accept="image/*">
-      <p>Drag & Drop Image</p>
-    </div>
+<!-- ========================= -->
+<!-- UPLOAD CARD -->
+<!-- ========================= -->
 
-    <button onclick="analyzeImage()">Analyze</button>
-  </div>
+<div class="upload-card">
 
-  <!-- PREVIEW -->
-  <div class="preview-card">
-    <h2>Preview</h2>
-    <img id="previewImage">
-  </div>
+<h2>Upload X-ray</h2>
 
-  <!-- RESULT -->
-  <div class="result-card" id="result-card">
-    <h2>AI Diagnosis</h2>
+<div class="drop-area">
 
-    <div id="statusBadge">Waiting</div>
+<input type="file" id="imageUpload" accept="image/*">
 
-    <div class="gauge-container">
-      <svg viewBox="0 0 200 120" class="gauge">
-        <path d="M20 100 A80 80 0 0 1 180 100"
-          stroke="#e5e7eb" stroke-width="12" fill="none"/>
-
-        <path id="gaugeFill"
-          d="M20 100 A80 80 0 0 1 180 100"
-          stroke="#3b82f6"
-          stroke-width="12"
-          fill="none"
-          stroke-dasharray="251"
-          stroke-dashoffset="251"/>
-      </svg>
-
-      <div id="gaugeText">0%</div>
-    </div>
-
-    <p id="confidenceText"></p>
-    <p id="fractureType"></p>
-    <p id="typeConfidence"></p>
-  </div>
-
-  <!-- REPORT -->
-  <div class="report-card" id="report-card">
-    <h2>AI Report</h2>
-
-    <p id="resultText"></p>
-    <p id="confidenceReport"></p>
-    <p id="typeReport"></p>
-    <p id="typeConfidenceReport"></p>
-
-    <h3>Recommendation</h3>
-    <p id="recommendation"></p>
-
-    <h3>Note</h3>
-    <p id="note"></p>
-
-    <button onclick="downloadReport()" class="download-btn">
-      Download PDF
-    </button>
-  </div>
+<p>Drag & Drop X-ray Image</p>
 
 </div>
 
-<!-- FLOATING BUTTON -->
-
-<div id="assistantToggle">🤖</div>
-
-<!-- ASSISTANT PANEL -->
-
-<div id="assistant">
-
-  <div id="assistantHeader">
-    🤖 AI Assistant
-    <span class="close-btn">✖</span>
-  </div>
-
-  <div id="chatBox"></div>
-
-  <input type="text" id="chatInput" placeholder="Ask about fracture..." />
+<button onclick="analyzeImage()">Analyze X-ray</button>
 
 </div>
-<!-- FOOTER -->
+
+
+<!-- ========================= -->
+<!-- PREVIEW CARD -->
+<!-- ========================= -->
+
+<div class="preview-card">
+
+<h2>X-ray Preview</h2>
+
+<img id="previewImage">
+
+</div>
+
+
+<!-- ========================= -->
+<!-- AI DIAGNOSIS CARD -->
+<!-- ========================= -->
+
+<div class="result-card">
+
+<h2>AI Diagnosis</h2>
+
+<div id="statusBadge">Waiting for analysis</div>
+
+
+<!-- CONFIDENCE GAUGE -->
+
+<div class="gauge-container">
+
+<svg viewBox="0 0 200 120" class="gauge">
+
+<path
+d="M20 100 A80 80 0 0 1 180 100"
+stroke="#e5e7eb"
+stroke-width="12"
+fill="none"
+/>
+
+<path
+id="gaugeFill"
+d="M20 100 A80 80 0 0 1 180 100"
+stroke="#f97316"
+stroke-width="12"
+fill="none"
+stroke-dasharray="251"
+stroke-dashoffset="251"
+/>
+
+</svg>
+
+<div id="gaugeText">0%</div>
+
+</div>
+
+<p id="confidenceText"></p>
+
+<p id="fractureType"></p>
+
+<p id="typeConfidence"></p>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- AI REPORT CARD -->
+<!-- ========================= -->
+
+<div class="report-card">
+
+<h2>AI Diagnosis Report</h2>
+
+<div id="reportBox">
+
+<p id="resultText"></p>
+
+<p id="confidenceReport"></p>
+
+<p id="typeReport"></p>
+
+<p id="typeConfidenceReport"></p>
+
+<br>
+
+<h3>Recommendation</h3>
+<p id="recommendation"></p>
+
+<h3>Note</h3>
+<p id="note"></p>
+
+<!-- DOWNLOAD BUTTON -->
+<button onclick="downloadReport()" class="download-btn">
+Download Medical Report (PDF)
+</button>
+</div>
+
+</div>
+
+
+</div>
+
+
 <footer>
-  <p>AI Bone Fracture Detection System</p>
+
+<p>AI Bone Fracture Detection System</p>
+
+<p>Vision Transformer Based Medical Imaging</p>
+
 </footer>
-
-
-  </div>
-
-</div>
-
+<!-- jsPDF library for PDF generation -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script src="script.js"></script>
 
+
 </body>
+
 </html>

@@ -1,183 +1,13 @@
-
-:root {
-  --bg: #020617;
-  --glass: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.08);
-
-  --primary: #3b82f6;
-  --accent: #06b6d4;
-
-  --text: #e2e8f0;
-}
-
 /* =============================
 GLOBAL
 ============================= */
 
 body {
+
     font-family: "Segoe UI", Arial;
     margin: 0;
-    background: radial-gradient(circle at top, #020617, #020617 60%);
-    color: #e2e8f0;
-}
+    background: #f1f5f9;
 
-/* =============================
-WELCOME SCREEN (FIXED)
-============================= */
-
-#welcomePage {
-    position: fixed; /* 🔥 FIX */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-
-    background: #020617;
-    color: white;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    overflow: hidden;
-    z-index: 9999; /* 🔥 TOP LAYER */
-}
-
-.welcome-content {
-    position: relative;
-    z-index: 2;
-
-    width: 100%;
-    text-align: center;
-
-    margin: 0 auto;   /* 🔥 centers properly */
-}
-
-#networkCanvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-}
-
-.welcome-text {
-    font-size: 70px;
-    background: linear-gradient(90deg,#3b82f6,#06b6d4);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-/* =============================
-MAIN APP
-============================= */
-
-#mainApp {
-    display: none;
-}
-
-/* =============================
-SIDEBAR (FIXED LEFT)
-============================= */
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 220px;
-    height: 100vh;
-
-    background: #020617;
-    padding: 20px;
-
-    z-index: 1000;
-}
-
-.sidebar h2 {
-    color: #60a5fa;
-}
-
-/* =============================
-SIDEBAR PREMIUM
-============================= */
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100vh;
-
-  background: linear-gradient(180deg,#020617,#020617 60%);
-  border-right: 1px solid rgba(255,255,255,0.05);
-
-  padding: 20px;
-  z-index: 1000;
-}
-
-/* LOGO */
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: #60a5fa;
-  margin-bottom: 30px;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  text-shadow: 0 0 10px rgba(59,130,246,0.6);
-}
-
-/* NAV */
-.nav {
-  list-style: none;
-  padding: 0;
-}
-
-.nav li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  padding: 12px 15px;
-  margin-bottom: 10px;
-
-  border-radius: 10px;
-  cursor: pointer;
-
-  color: #cbd5f5;
-  transition: 0.3s;
-}
-
-/* HOVER */
-.nav li:hover {
-  background: rgba(59,130,246,0.1);
-  box-shadow: 0 0 15px rgba(59,130,246,0.3);
-  transform: translateX(5px);
-}
-
-/* ACTIVE */
-.nav li.active {
-  background: linear-gradient(135deg,#3b82f6,#06b6d4);
-  color: white;
-
-  box-shadow: 0 0 20px rgba(59,130,246,0.6);
-}
-
-/* TEXT */
-.nav li span {
-  font-size: 15px;
-}
-/* =============================
-CONTENT SHIFT
-============================= */
-
-/* ONLY apply margin when main app is visible */
-#mainApp .content {
-    margin-left: 260px;   /* slightly more than sidebar */
-    padding: 30px 40px;   /* 🔥 better spacing */
 }
 
 /* =============================
@@ -185,26 +15,26 @@ HEADER
 ============================= */
 
 header {
-    background: linear-gradient(135deg,#020617,#1e3a8a);
 
-    padding: 40px;
-    border-radius: 16px;
-
-    margin-bottom: 25px; /* 🔥 spacing below */
-
+    background: linear-gradient(135deg,#0f172a,#1e3a8a);
+    color: white;
     text-align: center;
 
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    padding: 50px 20px;
+
 }
 
 header h1 {
+
     font-size: 40px;
+    margin-bottom: 10px;
 
-    background: linear-gradient(90deg,#3b82f6,#06b6d4);
-    -webkit-background-clip: text;
-    color: transparent;
+}
 
-    text-shadow: 0 0 20px rgba(59,130,246,0.6);
+header p {
+
+    opacity: 0.9;
+
 }
 
 /* =============================
@@ -212,13 +42,19 @@ MAIN GRID
 ============================= */
 
 .main-container {
+
     max-width: 1200px;
+
     margin: auto;
+
     padding: 40px 20px;
 
     display: grid;
+
     grid-template-columns: 1fr 1fr;
+
     gap: 25px;
+
 }
 
 /* =============================
@@ -230,36 +66,14 @@ CARDS
 .result-card,
 .report-card {
 
-  background: var(--glass);
-  backdrop-filter: blur(20px);
+    background: white;
 
-  border: 1px solid var(--border);
-  border-radius: 20px;
+    padding: 25px;
 
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 16px;
 
-  transition: all 0.4s ease;
-}
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 
-/* FLOAT EFFECT */
-.upload-card:hover,
-.preview-card:hover,
-.result-card:hover,
-.report-card:hover {
-  transform: translateY(-8px) scale(1.01);
-
-  box-shadow:
-    0 20px 60px rgba(0,0,0,0.6),
-    0 0 20px rgba(59,130,246,0.3);
-}
-
-.report-card {
-    margin-top: 20px;
-}
-
-.content {
-    max-width: 1200px;
 }
 
 /* =============================
@@ -267,8 +81,11 @@ UPLOAD CARD
 ============================= */
 
 .upload-card {
+
     grid-column: span 2;
+
     text-align: center;
+
 }
 
 /* =============================
@@ -276,14 +93,23 @@ DROP AREA
 ============================= */
 
 .drop-area {
-    border: 2px dashed rgba(59,130,246,0.5);
+
+    border: 2px dashed #3b82f6;
+
     border-radius: 12px;
+
     padding: 35px;
-    background: rgba(59,130,246,0.05);
+
+    background: #f8fafc;
+
+    cursor: pointer;
+
 }
 
 .drop-area:hover {
-    background: rgba(59,130,246,0.1);
+
+    background: #eef2ff;
+
 }
 
 /* =============================
@@ -291,173 +117,281 @@ BUTTON
 ============================= */
 
 button {
-    background: linear-gradient(135deg,#3b82f6,#06b6d4);
-    padding: 14px 28px;
-    border-radius: 10px;
-    border: none;
+
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+
     color: white;
+
+    border: none;
+
+    padding: 14px 28px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    margin-top: 20px;
+
+}
+
+button:hover {
+
+    transform: scale(1.05);
+
 }
 
 /* =============================
-PREVIEW IMAGE
+X-RAY PREVIEW CARD
 ============================= */
 
+.preview-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 420px;
+
+}
+
+/* FIX IMAGE SIZE */
+
 #previewImage {
+
     max-width: 100%;
+
     max-height: 320px;
+
+    object-fit: contain;
+
     border-radius: 10px;
+
+    margin-top: 10px;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+
 }
 
 /* =============================
-RESULT
+AI RESULT CARD
 ============================= */
 
 .result-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
     text-align: center;
+
+    min-height: 420px;
+
 }
 
+/* STATUS BADGE */
+
 #statusBadge {
-    background: rgba(59,130,246,0.2);
-    color: #60a5fa;
+
+    display: inline-block;
+
+    background: #e0f2fe;
+
+    color: #0369a1;
+
     padding: 6px 12px;
+
     border-radius: 20px;
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+
 }
 
 /* =============================
-GAUGE
+CONFIDENCE GAUGE
 ============================= */
 
 .gauge-container {
+
     position: relative;
+
     width: 180px;
+
     margin: 20px auto;
+
+}
+
+.gauge {
+
+    width: 100%;
+
 }
 
 #gaugeText {
+
     position: absolute;
+
     bottom: 8px;
+
     left: 50%;
+
     transform: translateX(-50%);
+
+    font-size: 22px;
+
+    font-weight: bold;
+
 }
 
 /* =============================
-ASSISTANT (FIXED)
+REPORT CARD
 ============================= */
 
-#assistant {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 260px;
+.report-card {
 
-    background: #1e293b;
-    border-radius: 10px;
+    grid-column: span 2;
 
-    z-index: 2000;
-}
+    line-height: 1.6;
 
-#chatBox p {
-  margin: 8px 0;
-  font-size: 14px;
-}
-
-#chatBox p b {
-  color: #3b82f6;
-}
-
-#chatBox {
-  padding: 10px;
-  height: 180px;
-  overflow-y: auto;
-}
-
-
-/* TOGGLE BUTTON */
-#assistantToggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-
-  width: 65px;
-  height: 65px;
-
-  background: #3b82f6; /* 🔥 solid color to test */
-  color: white;
-
-  border-radius: 50%;
-
-  display: flex !important;   /* 🔥 FORCE */
-  align-items: center;
-  justify-content: center;
-
-  font-size: 28px;
-  cursor: pointer;
-
-  z-index: 99999; /* 🔥 ABOVE EVERYTHING */
-}
-
-/* ASSISTANT PANEL */
-#assistant {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-
-  width: 280px;
-  height: 350px;
-
-  background: #1e293b;
-  border-radius: 12px;
-
-  display: none; /* 🔥 hidden by default */
-
-  flex-direction: column;
-  overflow: hidden;
-
-  z-index: 3000;
-}
-
-/* HEADER */
-#assistantHeader {
-  background: linear-gradient(90deg,#3b82f6,#06b6d4);
-  padding: 10px;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-}
-
-/* CLOSE BUTTON */
-.close-btn {
-  cursor: pointer;
-}
-
-/* CHAT */
-#chatBox {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-}
-
-/* INPUT */
-#chatInput {
-  border: none;
-  padding: 10px;
-  outline: none;
 }
 
 /* =============================
-LOADER
+WELCOME SCREEN
 ============================= */
 
-#loader {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 3000;
+#welcomePage {
+
+    position: relative;
+
+    height: 100vh;
+
+    background: #0f172a;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+
 }
 
-.hidden {
-    display: none;
+.welcome-content {
+
+    text-align: center;
+
+    z-index: 2;
+
+}
+
+.welcome-text {
+
+    font-size: 70px;
+
+    margin-bottom: 20px;
+
+}
+
+.typing-text {
+
+    font-size: 50px;
+
+    font-weight: bold;
+
+}
+
+.subtitle {
+
+    margin-top: 15px;
+
+    opacity: 0.8;
+
+}
+
+/* =============================
+SCAN LINE
+============================= */
+
+.scan-line {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 4px;
+
+    background: linear-gradient(to right,transparent,#3b82f6,transparent);
+
+    animation: scan 3s infinite;
+
+}
+
+@keyframes scan {
+
+    0% { top:0 }
+
+    100% { top:100% }
+
+}
+
+/* =============================
+NETWORK CANVAS
+============================= */
+
+#networkCanvas {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+}
+
+/* =============================
+MEDICAL BUTTONS
+============================= */
+
+.medical-buttons {
+
+    margin-top: 15px;
+
+    display: flex;
+
+    gap: 15px;
+
+}
+
+.medical-buttons button {
+
+    background: #2563eb;
+
+    padding: 12px 18px;
+
+}
+
+.medical-buttons button:hover {
+
+    background: #1e40af;
+
 }
 
 /* =============================
@@ -465,10 +399,27 @@ FOOTER
 ============================= */
 
 footer {
+
     text-align: center;
+
     padding: 30px;
+
     margin-top: 40px;
-    background: #020617;
+
+    background: #0f172a;
+
+    color: white;
+
+}
+
+/* =============================
+HIDE MAIN APP INITIALLY
+============================= */
+
+#mainApp {
+
+    display: none;
+
 }
 
 /* =============================
@@ -476,151 +427,38 @@ RESPONSIVE
 ============================= */
 
 @media (max-width: 900px) {
-
-    .content {
-        margin-left: 0;
-    }
-
-    .sidebar {
-        display: none;
-    }
-}
-
-/* =============================
-LAYOUT SYSTEM (PRO LEVEL)
-============================= */
-
-/* MAIN APP FLEX */
-#mainApp {
-  display: flex;
-}
-
-/* SIDEBAR */
-.sidebar {
-  width: 230px;
-  height: 100vh;
-
-  position: fixed;
-  left: 0;
-  top: 0;
-
-  background: linear-gradient(180deg,#020617,#020617 60%);
-  border-right: 1px solid rgba(255,255,255,0.05);
-
-  padding: 20px;
-  z-index: 1000;
-}
-
-/* CONTENT AREA */
-.content {
-  margin-left: 230px;
-
-  width: calc(100% - 230px);
-  min-height: 100vh;
-
-  padding: 30px 40px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;  /* 🔥 CENTER EVERYTHING */
-}
-
-/* INNER CONTAINER */
-.content > * {
-  width: 100%;
-  max-width: 1200px;  /* 🔥 CENTERED DASHBOARD */
-}
-
-/* =============================
-HEADER (STICKY + PREMIUM)
-============================= */
-
-header {
-  position: sticky;
-  top: 0;
-
-  background: linear-gradient(135deg,#020617,#1e3a8a);
-
-  padding: 35px;
-  border-radius: 16px;
-
-  margin-bottom: 25px;
-
-  text-align: center;
-
-  z-index: 100;
-
-  backdrop-filter: blur(10px);
-}
-
-/* =============================
-CARD SYSTEM
-============================= */
-
-.report-card,
-.upload-card,
-.preview-card,
-.result-card {
-
-  margin-bottom: 25px;
-
-  transition: 0.3s;
-}
-
-.report-card:hover,
-.upload-card:hover,
-.preview-card:hover,
-.result-card:hover {
-  transform: translateY(-4px);
-}
-
-/* =============================
-GRID IMPROVEMENT
-============================= */
 
 .main-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
+
+grid-template-columns: 1fr;
+
+}
+
+.upload-card,
+.report-card {
+
+grid-column: span 1;
+
+}
+
 }
 
 /* =============================
-SECTION SPACING
+DOWNLOAD BUTTON FOR REPORT
 ============================= */
+.download-btn{
 
-.report-card:first-child {
-  margin-top: 10px;
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+cursor:pointer;
+margin-top:20px;
+font-size:14px;
+
 }
 
-/* =============================
-SCROLLBAR (PREMIUM)
-============================= */
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(59,130,246,0.5);
-  border-radius: 10px;
-}
-
-/* =============================
-RESPONSIVE
-============================= */
-
-@media (max-width: 900px) {
-
-  .sidebar {
-    display: none;
-  }
-
-  .content {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .main-container {
-    grid-template-columns: 1fr;
-  }
+.download-btn:hover{
+background:#1e40af;
 }

@@ -34,7 +34,8 @@ This project presents a **deep learning-based fracture detection system** that:
 ---
 
 # 📸 Demo
-![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
 
 ---
 
