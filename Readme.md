@@ -1,6 +1,10 @@
 # 🦴 Bone Fracture Detection & Classification using Vision Transformer
 
-An AI-powered medical imaging system that detects bone fractures and classifies fracture types from X-ray images using deep learning.
+This project presents an AI-powered bone fracture detection and classification system using Vision Transformer (ViT), designed to analyze X-ray images and assist in medical diagnosis.
+
+The system performs both binary fracture detection and multiclass classification across 12 fracture types, delivering real-time predictions along with confidence scores and AI-generated diagnostic reports.
+
+Built as an end-to-end solution with a deep learning model, backend processing pipeline, and interactive frontend interface, this project aims to support radiologists and improve the efficiency of medical decision-making.
 
 🏆 **Achievement:** 2nd Runner-Up — HackBio (Xpecto’26), IIT Mandi
 
