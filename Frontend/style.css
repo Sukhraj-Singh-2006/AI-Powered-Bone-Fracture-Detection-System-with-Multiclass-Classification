@@ -16,7 +16,7 @@ HEADER
 
 header {
 
-    background: linear-gradient(135deg,#0f172a,#1e3a8a);
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
     color: white;
     text-align: center;
 
@@ -72,7 +72,7 @@ CARDS
 
     border-radius: 16px;
 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
 }
 
@@ -118,7 +118,7 @@ BUTTON
 
 button {
 
-    background: linear-gradient(135deg,#3b82f6,#2563eb);
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
 
     color: white;
 
@@ -174,7 +174,7 @@ X-RAY PREVIEW CARD
 
     margin-top: 10px;
 
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 
 }
 
@@ -334,7 +334,7 @@ SCAN LINE
 
     height: 4px;
 
-    background: linear-gradient(to right,transparent,#3b82f6,transparent);
+    background: linear-gradient(to right, transparent, #3b82f6, transparent);
 
     animation: scan 3s infinite;
 
@@ -342,9 +342,13 @@ SCAN LINE
 
 @keyframes scan {
 
-    0% { top:0 }
+    0% {
+        top: 0
+    }
 
-    100% { top:100% }
+    100% {
+        top: 100%
+    }
 
 }
 
@@ -428,37 +432,37 @@ RESPONSIVE
 
 @media (max-width: 900px) {
 
-.main-container {
+    .main-container {
 
-grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
 
-}
+    }
 
-.upload-card,
-.report-card {
+    .upload-card,
+    .report-card {
 
-grid-column: span 1;
+        grid-column: span 1;
 
-}
+    }
 
 }
 
 /* =============================
 DOWNLOAD BUTTON FOR REPORT
 ============================= */
-.download-btn{
+.download-btn {
 
-background:#2563eb;
-color:white;
-border:none;
-padding:12px 20px;
-border-radius:8px;
-cursor:pointer;
-margin-top:20px;
-font-size:14px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 14px;
 
 }
 
-.download-btn:hover{
-background:#1e40af;
+.download-btn:hover {
+    background: #1e40af;
 }

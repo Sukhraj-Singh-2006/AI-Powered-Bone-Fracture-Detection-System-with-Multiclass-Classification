@@ -35,7 +35,7 @@ const ctx = canvas.getContext("2d");
 
 const networkColors = {
   particle: "#f97316",
-  line: "rgba(168,85,247,0.18)"
+  line: "rgba(168,85,247,0.18)",
 };
 
 canvas.width = window.innerWidth;
@@ -148,7 +148,6 @@ uploadInput.addEventListener("change", function () {
 // ===========================
 
 function analyzeImage() {
-
   const file = uploadInput.files[0];
 
   if (!file) {
@@ -162,87 +161,82 @@ function analyzeImage() {
   const formData = new FormData();
   formData.append("file", file);
 
-  fetch("http://localhost:5000/predict", {
+  fetch("http://127.0.0.1:5000/predict", {
     method: "POST",
-    body: formData
+    body: formData,
   })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Server error");
+      }
+      return response.json();
+    })
 
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Server error");
-    }
-    return response.json();
-  })
+    .then((data) => {
+      // =====================
+      // DIAGNOSIS RESULT
+      // =====================
 
-  .then((data) => {
+      statusBadge.innerText = data.result;
+      updateDiagnosisAppearance(data.result);
 
-    // =====================
-    // DIAGNOSIS RESULT
-    // =====================
+      document.getElementById("confidenceText").innerText =
+        "Confidence: " + data.confidence + "%";
 
-    statusBadge.innerText = data.result;
-    updateDiagnosisAppearance(data.result);
+      document.getElementById("fractureType").innerText =
+        "Fracture Type: " + data.type;
 
-    document.getElementById("confidenceText").innerText =
-      "Confidence: " + data.confidence + "%";
+      document.getElementById("typeConfidence").innerText =
+        "Type Confidence: " + data.type_confidence + "%";
 
-    document.getElementById("fractureType").innerText =
-      "Fracture Type: " + data.type;
+      // =====================
+      // REPORT SECTION
+      // =====================
 
-    document.getElementById("typeConfidence").innerText =
-      "Type Confidence: " + data.type_confidence + "%";
+      document.getElementById("resultText").innerText =
+        "Result: " + data.result;
 
+      document.getElementById("confidenceReport").innerText =
+        "Confidence: " + data.confidence + "%";
 
-    // =====================
-    // REPORT SECTION
-    // =====================
+      document.getElementById("typeReport").innerText =
+        "Fracture Type: " + data.type;
 
-    document.getElementById("resultText").innerText =
-      "Result: " + data.result;
+      document.getElementById("typeConfidenceReport").innerText =
+        "Type Confidence: " + data.type_confidence + "%";
 
-    document.getElementById("confidenceReport").innerText =
-      "Confidence: " + data.confidence + "%";
+      document.getElementById("recommendation").innerText =
+        data.recommendation ||
+        "Please consult an orthopedic specialist for professional medical evaluation.";
 
-    document.getElementById("typeReport").innerText =
-      "Fracture Type: " + data.type;
+      document.getElementById("note").innerText =
+        data.note ||
+        "This AI system provides assistance only and should not replace clinical diagnosis.";
 
-    document.getElementById("typeConfidenceReport").innerText =
-      "Type Confidence: " + data.type_confidence + "%";
+      // =====================
+      // UPDATE CONFIDENCE GAUGE
+      // =====================
 
+      const confidence = data.confidence;
 
-    document.getElementById("recommendation").innerText =
-      data.recommendation ||
-      "Please consult an orthopedic specialist for professional medical evaluation.";
+      document.getElementById("gaugeText").innerText = confidence + "%";
 
-    document.getElementById("note").innerText =
-      data.note ||
-      "This AI system provides assistance only and should not replace clinical diagnosis.";
+      const circumference = 251;
+      const offset = circumference - (confidence / 100) * circumference;
 
+      gaugeFill.style.strokeDashoffset = offset;
 
-    // =====================
-    // UPDATE CONFIDENCE GAUGE
-    // =====================
+      setLoadingState(false);
+    })
 
-    const confidence = data.confidence;
+    .catch((err) => {
+      console.log("Error:", err);
 
-    document.getElementById("gaugeText").innerText = confidence + "%";
+      setLoadingState(false);
+      statusBadge.innerText = "Analysis failed";
 
-    const circumference = 251;
-    const offset = circumference - (confidence / 100) * circumference;
-
-    gaugeFill.style.strokeDashoffset = offset;
-
-    setLoadingState(false);
-
-  })
-
-  .catch((err) => {
-    console.log(err);
-    setLoadingState(false);
-    statusBadge.innerText = "Analysis failed";
-    alert("Image Format is not supported. Please use JPEG or PNG files.");
-  });
-
+      alert("Server error or backend not running. Please check backend.");
+    });
 }
 
 // ===========================
@@ -291,48 +285,49 @@ function findHospital() {
 // DOWNLOAD PDF REPORT
 // ===========================
 function downloadReport() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
 
-const { jsPDF } = window.jspdf;
-const doc = new jsPDF();
+  const result = document.getElementById("resultText").innerText;
+  const confidence = document.getElementById("confidenceReport").innerText;
+  const type = document.getElementById("typeReport").innerText;
+  const typeConfidence = document.getElementById(
+    "typeConfidenceReport",
+  ).innerText;
+  const recommendation = document.getElementById("recommendation").innerText;
+  const note = document.getElementById("note").innerText;
 
-const result = document.getElementById("resultText").innerText;
-const confidence = document.getElementById("confidenceReport").innerText;
-const type = document.getElementById("typeReport").innerText;
-const typeConfidence = document.getElementById("typeConfidenceReport").innerText;
-const recommendation = document.getElementById("recommendation").innerText;
-const note = document.getElementById("note").innerText;
+  const img = document.getElementById("previewImage");
 
-const img = document.getElementById("previewImage");
+  if (!result) {
+    alert("Please analyze the X-ray first.");
+    return;
+  }
 
-if (!result) {
-alert("Please analyze the X-ray first.");
-return;
-}
+  doc.setFontSize(18);
+  doc.text("Bone Fracture Detection AI Report", 20, 20);
 
-doc.setFontSize(18);
-doc.text("Bone Fracture Detection AI Report", 20, 20);
+  const today = new Date().toLocaleDateString();
 
-const today = new Date().toLocaleDateString();
+  doc.setFontSize(12);
+  doc.text("Report Date: " + today, 20, 30);
 
-doc.setFontSize(12);
-doc.text("Report Date: " + today, 20, 30);
+  // Add X-ray Image
+  if (img.src) {
+    doc.addImage(img.src, "JPEG", 20, 40, 70, 70);
+  }
 
-// Add X-ray Image
-if (img.src) {
-doc.addImage(img.src, "JPEG", 20, 40, 70, 70);
-}
+  // Diagnosis text
+  doc.text(result, 20, 120);
+  doc.text(confidence, 20, 130);
+  doc.text(type, 20, 140);
+  doc.text(typeConfidence, 20, 150);
 
-// Diagnosis text
-doc.text(result, 20, 120);
-doc.text(confidence, 20, 130);
-doc.text(type, 20, 140);
-doc.text(typeConfidence, 20, 150);
+  doc.text("Recommendation:", 20, 170);
+  doc.text(recommendation, 20, 180);
 
-doc.text("Recommendation:", 20, 170);
-doc.text(recommendation, 20, 180);
+  doc.text("Note:", 20, 200);
+  doc.text(note, 20, 210);
 
-doc.text("Note:", 20, 200);
-doc.text(note, 20, 210);
-
-doc.save("AI_Fracture_Report.pdf");
+  doc.save("AI_Fracture_Report.pdf");
 }

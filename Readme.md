@@ -265,7 +265,7 @@ Consult an orthopedic specialist
 
 # 👨‍💻 Author
 
-**Jatin Kumar**
+**Sukhraj Singh**
 AI / Machine Learning Developer
 
 ---
