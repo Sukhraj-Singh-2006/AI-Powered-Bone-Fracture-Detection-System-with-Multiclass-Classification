@@ -266,7 +266,7 @@ Consult an orthopedic specialist
 # 👨‍💻 Author
 
 **Sukhraj Singh**
-AI / Machine Learning Developer
+AIML Developer
 
 ---
 
