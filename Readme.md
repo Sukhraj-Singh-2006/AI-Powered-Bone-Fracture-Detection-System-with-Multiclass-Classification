@@ -215,6 +215,7 @@ pip install -r requirements.txt
 ## Run Backend
 
 ```bash
+export KMP_DUPLICATE_LIB_OK=TRUE
 python predict_pipeline.py
 ```
 
